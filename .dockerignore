@@ -1,7 +1,0 @@
-.git
-.vs
-artifacts
-agenda-app.exe
-**/bin
-**/obj
-info-files

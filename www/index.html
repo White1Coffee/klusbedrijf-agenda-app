@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#142b36">
+  <meta name="description" content="De lokale werkagenda van KBM & LW totaalonderhoud vastgoed.">
+  <title>Agenda — KBM &amp; LW</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23142b36'/%3E%3Cpath d='M15 46V18h7v12l11-12h9L29 31l14 15h-9L22 32v14z' fill='%23f2db72'/%3E%3C/svg%3E">
+  <script defer src="app.js"></script>
+</head>
+<body>
+  <svg class="icon-library" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="i-home" viewBox="0 0 24 24"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-6v-7h-4v7H4a1 1 0 0 1-1-1z"/><path d="M9 21v-7h6v7"/></symbol>
+    <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18"/></symbol>
+    <symbol id="i-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="8" height="8" rx="2"/><rect x="13" y="3" width="8" height="5" rx="2"/><rect x="13" y="10" width="8" height="11" rx="2"/><rect x="3" y="13" width="8" height="8" rx="2"/></symbol>
+    <symbol id="i-star" viewBox="0 0 24 24"><path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2L12 17.3l-5.6 2.9 1.1-6.2L3 9.6l6.2-.9z"/></symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 7 8 6 8-6"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+    <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3v12m-5-5 5 5 5-5M5 20h14"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24"><path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></symbol>
+  </svg>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="#home" aria-label="KBM en LW startpagina">
+        <span class="brand-mark"><b>K</b><i></i><b>W</b></span>
+        <span class="brand-copy"><strong>KBM <em>&amp;</em> LW</strong><small>TOTAALONDERHOUD</small></span>
+      </a>
+      <div class="nav-caption">WERKRUIMTE</div>
+      <nav class="main-nav" aria-label="Hoofdnavigatie">
+        <button class="nav-link active" data-page="home"><svg><use href="#i-home"/></svg><span>Overzicht</span></button>
+        <button class="nav-link" data-page="agenda"><svg><use href="#i-calendar"/></svg><span>Agenda</span><span class="nav-count" id="navCount">0</span></button>
+        <button class="nav-link" data-page="diensten"><svg><use href="#i-grid"/></svg><span>Diensten</span></button>
+        <button class="nav-link" data-page="ervaringen"><svg><use href="#i-star"/></svg><span>Ervaringen</span></button>
+        <button class="nav-link" data-page="contact"><svg><use href="#i-mail"/></svg><span>Contact</span></button>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="local-card"><span class="local-indicator"></span><div><strong>Alleen op dit apparaat</strong><small>Je agenda is privé en offline.</small></div></div>
+        <div class="backup-actions"><button class="backup-download" type="button">Back-up downloaden</button><button class="backup-restore" type="button">Back-up terugzetten</button></div><div class="profile-button"><span class="avatar">KB</span><span><strong>KBM &amp; LW</strong><small>Gegevens staan lokaal</small></span></div>
+        <input id="importFile" type="file" accept="application/json,.json" hidden>
+      </div>
+    </aside>
+    <main class="main-area">
+      <header class="topbar">
+        <button class="icon-button mobile-menu" id="menuButton" aria-label="Menu openen"><svg><use href="#i-menu"/></svg></button>
+        <div class="breadcrumbs"><span>KBM &amp; LW</span><svg><use href="#i-arrow"/></svg><strong id="crumb">Overzicht</strong></div>
+        <div class="top-actions"><span class="today-pill" id="todayPill"></span><button class="button button-dark button-small" data-new-appointment><svg><use href="#i-plus"/></svg><span>Nieuwe afspraak</span></button></div>
+      </header>
+      <div class="page-content">
+        <section class="page active" id="page-home" aria-labelledby="homeTitle">
+          <div class="welcome-row"><div><p class="eyebrow" id="welcomeDate">MAANDAG, 12 MEI</p><h1 id="homeTitle">Goed werk begint <span>met overzicht.</span></h1><p class="page-intro">Dit is de planning van KBM &amp; LW. Alles blijft bewaard op dit apparaat.</p></div><div class="hero-art" aria-hidden="true"><span class="sun-disc"></span><div class="house"><i class="roof"></i><i class="wall"><b></b><b></b><b></b><em></em></i></div><span class="art-spark spark-one">✳</span><span class="art-spark spark-two">✳</span></div></div>
+          <div class="stats-grid"><article class="stat-card"><div class="stat-label">AFSPRAKEN DEZE MAAND<span class="stat-icon icon-yellow"><svg><use href="#i-calendar"/></svg></span></div><div class="stat-value" id="monthCount">0</div><div class="stat-foot">ingepland deze maand</div></article><article class="stat-card"><div class="stat-label">OPENSTAANDE KLUSSEN<span class="stat-icon icon-blue"><svg><use href="#i-grid"/></svg></span></div><div class="stat-value" id="openCount">0</div><div class="stat-foot">wachten op afronding</div></article><article class="stat-card"><div class="stat-label">EERSTVOLGENDE<span class="stat-icon icon-green"><svg><use href="#i-clock"/></svg></span></div><div class="stat-value stat-next" id="nextDate">—</div><div class="stat-foot" id="nextTitle">Nog niets ingepland</div></article></div>
+          <div class="home-grid"><section class="panel schedule-panel"><div class="panel-heading"><div><p class="eyebrow">OP DE PLANNING</p><h2>Komende afspraken</h2></div><button class="text-link" data-goto="agenda">Bekijk agenda <svg><use href="#i-arrow"/></svg></button></div><div id="upcomingList" class="appointment-list"></div><div id="homeEmpty" class="empty-state"><span class="empty-calendar"><svg><use href="#i-calendar"/></svg></span><strong>De agenda is nog leeg</strong><p>Plan de eerste klus in om hier overzicht te houden.</p><button class="button button-outline" data-new-appointment><svg><use href="#i-plus"/></svg>Afspraak inplannen</button></div></section>
+            <aside class="panel note-panel"><div class="panel-heading"><div><p class="eyebrow">KBM &amp; LW</p><h2>Goed geregeld.</h2></div><span class="note-spark">✳</span></div><p class="note-copy">Van verbouwen en renoveren tot onderhoud en schilderwerk. Alle klussen overzichtelijk op één plek.</p><div class="note-divider"></div><div class="note-detail"><span class="note-detail-icon"><svg><use href="#i-pin"/></svg></span><div><strong>Jouw werk, jouw planning</strong><small>Wijzig of rond afspraken af via de agenda.</small></div></div><button class="button button-yellow note-button" data-goto="diensten">Bekijk onze diensten <svg><use href="#i-arrow"/></svg></button><div class="backup-actions home-backup-actions"><button class="backup-download" type="button">Back-up downloaden</button><button class="backup-restore" type="button">Back-up terugzetten</button></div><div class="note-decoration" aria-hidden="true"></div></aside>
+          </div>
+          <footer class="page-foot"><span><span class="online-dot"></span> Offline beschikbaar</span><span>KBM &amp; LW · Totaalonderhoud vastgoed</span></footer>
+        </section>
+        <section class="page" id="page-agenda" aria-labelledby="agendaTitle"><div class="section-heading"><div><p class="eyebrow">PLANNING</p><h1 id="agendaTitle">Agenda<span class="heading-dot">.</span></h1><p class="page-intro">Al je werkzaamheden overzichtelijk bij elkaar.</p></div><button class="button button-dark" data-new-appointment><svg><use href="#i-plus"/></svg>Afspraak toevoegen</button></div><div class="agenda-layout"><section class="panel calendar-panel"><div class="calendar-heading"><button class="icon-button" id="prevMonth" aria-label="Vorige maand">‹</button><h2 id="calendarMonth"></h2><button class="icon-button" id="nextMonth" aria-label="Volgende maand">›</button><button class="today-button" id="todayButton">Vandaag</button></div><div class="calendar-grid" id="calendarGrid"></div></section><section class="panel day-panel"><div class="panel-heading"><div><p class="eyebrow">GESELECTEERDE DAG</p><h2 id="selectedDayTitle"></h2></div></div><div id="dayList" class="appointment-list"></div><div id="dayEmpty" class="compact-empty">Geen afspraken op deze dag.</div></section></div></section>
+        <section class="page" id="page-diensten" aria-labelledby="servicesTitle"><div class="section-heading"><div><p class="eyebrow">WAT WE DOEN</p><h1 id="servicesTitle">Diensten<span class="heading-dot">.</span></h1><p class="page-intro">Vakwerk voor vastgoed, van kleine reparatie tot complete renovatie.</p></div></div><div class="service-grid" id="serviceGrid"></div><div class="service-note"><span>✳</span><p>Een klus op maat? Plan alvast een afspraak. Je kunt tijdens het inplannen extra informatie toevoegen.</p></div></section>
+        <section class="page" id="page-ervaringen" aria-labelledby="reviewsTitle"><div class="section-heading"><div><p class="eyebrow">KLANTEN AAN HET WOORD</p><h1 id="reviewsTitle">Ervaringen<span class="heading-dot">.</span></h1><p class="page-intro">Een goede klus herken je aan het resultaat én de samenwerking.</p></div></div><div class="review-grid"><article class="review-card"><div class="stars" aria-label="5 van 5 sterren">★★★★★</div><p>“Heldere communicatie en de klus netjes uitgevoerd. We wisten precies waar we aan toe waren.”</p><div class="review-author"><span class="review-avatar avatar-peach">M</span><span><strong>Marieke</strong><small>Onderhoud woning</small></span><span class="quote-mark">“</span></div></article><article class="review-card"><div class="stars" aria-label="5 van 5 sterren">★★★★★</div><p>“Op tijd aanwezig en goed advies gekregen. Het schilderwerk is strak en zorgvuldig gedaan.”</p><div class="review-author"><span class="review-avatar avatar-blue">S</span><span><strong>Samir</strong><small>Schilderwerk</small></span><span class="quote-mark">“</span></div></article><article class="review-card review-highlight"><span class="review-spark">✳</span><p class="highlight-title">Ook een klus<br>goed geregeld?</p><p class="highlight-copy">Maak direct een afspraak en zet de eerste stap.</p><button class="button button-yellow" data-new-appointment>Plan een afspraak <svg><use href="#i-arrow"/></svg></button></article></div></section>
+        <section class="page" id="page-contact" aria-labelledby="contactTitle"><div class="section-heading"><div><p class="eyebrow">NEEM CONTACT OP</p><h1 id="contactTitle">Even overleggen<span class="heading-dot">?</span></h1><p class="page-intro">Schrijf je vraag. Kopieer het bericht en verstuur het zelf via je eigen mail of telefoon.</p></div></div><div class="contact-layout"><form class="panel contact-form" id="contactForm"><label>Je naam<input name="name" autocomplete="name" required placeholder="Voor- en achternaam"></label><label>Waar gaat je vraag over?<input name="subject" required placeholder="Bijvoorbeeld: schilderwerk"></label><label>Je bericht<textarea name="message" rows="5" required placeholder="Vertel kort waar we je mee kunnen helpen"></textarea></label><button class="button button-dark" type="submit">Bericht kopiëren <svg><use href="#i-arrow"/></svg></button><p class="form-feedback" id="contactFeedback" role="status"></p></form><aside class="contact-aside"><span class="contact-big-icon"><svg><use href="#i-mail"/></svg></span><h2>Jij houdt de regie.</h2><p>Deze app verstuurt niets en deelt geen gegevens. Je bericht blijft hier totdat je het zelf kopieert.</p><div class="note-divider"></div><div class="offline-note"><span class="online-dot"></span> Werkt zonder internet</div></aside></div></section>
+      </div>
+    </main>
+  </div>
+  <dialog id="appointmentDialog" class="appointment-dialog"><form id="appointmentForm" method="dialog"><div class="dialog-head"><div><p class="eyebrow">NIEUWE KLUS</p><h2>Afspraak inplannen</h2></div><button class="icon-button close-dialog" type="button" aria-label="Sluiten" data-close-dialog>×</button></div><div class="form-grid"><label class="span-two">Klus of werkzaamheden<input name="title" id="appointmentTitle" required maxlength="80" placeholder="Bijvoorbeeld: badkamer renoveren"></label><label>Klantnaam<input name="customer" required maxlength="70" autocomplete="name" placeholder="Naam klant"></label><label>Telefoon <span class="optional">optioneel</span><input name="phone" type="tel" autocomplete="tel" placeholder="06 12345678"></label><label>Datum<input name="date" id="appointmentDate" type="date" required></label><div class="time-row"><label>Van<input name="start" type="time" required value="09:00"></label><label>Tot<input name="end" type="time" required value="11:00"></label></div><label class="span-two">Notities <span class="optional">optioneel</span><textarea name="notes" rows="3" maxlength="500" placeholder="Adres, materiaal of extra afspraken"></textarea></label></div><p class="dialog-feedback" id="appointmentFeedback" role="alert"></p><div class="dialog-actions"><button class="button button-quiet" type="button" data-close-dialog>Annuleren</button><button class="button button-dark" type="submit"><svg><use href="#i-plus"/></svg>Afspraak opslaan</button></div></form></dialog>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
+

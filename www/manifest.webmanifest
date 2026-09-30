@@ -1,0 +1,12 @@
+{
+  "name": "KBM & LW Agenda",
+  "short_name": "KBM Agenda",
+  "description": "De privé werkagenda van KBM & LW.",
+  "lang": "nl",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f7f8f5",
+  "theme_color": "#142b36",
+  "icons": [{ "src": "app-icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }]
+}

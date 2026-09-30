@@ -1,0 +1,8 @@
+{
+  "appId": "nl.kbmwlw.agenda",
+  "appName": "KBM & LW Agenda",
+  "webDir": "www",
+  "server": {
+    "androidScheme": "https"
+  }
+}

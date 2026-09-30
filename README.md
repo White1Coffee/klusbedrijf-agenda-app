@@ -1,38 +1,42 @@
-# Klusbedrijf Agenda App
+# KBM & LW Agenda
 
-Windows WPF-app voor klanten en beheerders van een klusbedrijf. De app leest afspraken en diensten via de Supabase REST API.
+Een kleine, offline agenda-app in HTML, CSS en JavaScript. Afspraken worden lokaal in de browser bewaard. Er is geen account, database, externe koppeling of verzending van gegevens.
 
-## Starten
+## Werkt al
 
-1. Installeer de .NET 8 SDK en open `src/AgendaApp/AgendaApp.csproj` in Visual Studio.
-2. Stel `SUPABASE_URL` en `SUPABASE_KEY` in als gebruikers- of procesomgevingsvariabelen (zie `config/env.example`).
-3. Voer `db/schema.sql` uit in de Supabase SQL Editor.
-4. Build en start met de Release-configuratie.
+- Afspraken maken, bekijken, statussen wijzigen en verwijderen.
+- Maandkalender en planningsoverzicht.
+- Diensten, klantreacties en een contactbericht dat je zelf kunt kopiëren.
+- JSON-back-up maken en terugzetten.
+- Offline bruikbaar, zonder externe scripts, lettertypen of webdiensten.
 
-Voor een self-contained Release-publicatie:
+De agenda blijft op het apparaat staan waarop je hem gebruikt. Een browser en een geïnstalleerde Android-app hebben elk hun eigen lokale opslag. Gebruik de back-upfunctie om afspraken over te zetten. Het contactscherm verstuurt niets.
 
-```powershell
-dotnet publish .\src\AgendaApp\AgendaApp.csproj -c Release -r win-x64 --self-contained true
-```
+## Openen als website
 
-De uitvoer staat in `src/AgendaApp/bin/Release/net8.0-windows/win-x64/publish/`.
+Open `www/index.html` rechtstreeks in je browser. Voor de PWA-installatie en offline cache kun je de lokale launcher starten met `python start.py`. Die opent de agenda via `127.0.0.1` op deze computer; de app is niet bereikbaar vanaf andere apparaten of internet.
 
-## Linux Docker cross-build naar Windows `.exe`
+## Windows-EXE maken
 
-De `Dockerfile` gebruikt een Linux .NET SDK-container en publiceert naar `win-x64`; de uitvoer blijft dus een Windows-app. Een WPF-programma kan niet in een Linux-container worden uitgevoerd, alleen erin worden gecompileerd.
-
-```powershell
-docker build --output type=local,dest=artifacts/linux-cross .
-```
-
-Daarna staat `AgendaApp.exe` in `artifacts/linux-cross`. Start deze op Windows, rechtstreeks of met:
+Installeer Python op Windows en voer in PowerShell uit:
 
 ```powershell
-$env:SUPABASE_URL="https://jouw-project.supabase.co"
-$env:SUPABASE_KEY="jouw-anon-key"
-.\artifacts\linux-cross\AgendaApp.exe
+python -m pip install pyinstaller
+pyinstaller --noconfirm --clean --onefile --windowed --name KBM-LW-Agenda --add-data "www:www" start.py
 ```
 
-De app blijft bruikbaar zonder configuratie; er verschijnt dan een duidelijke verbindingsmelding.
+De losse app staat daarna in `dist/KBM-LW-Agenda.exe`. De webbestanden zitten in de EXE. De launcher gebruikt alleen een lokale loopback-webserver zodat de browser de afspraken en offline app-cache kan bewaren.
 
-> Een WPF-GUI kan niet zinvol interactief in een Nano Server-container draaien. Het Dockerfile is daarom alleen een publicatie-/startbasis; voor dagelijks desktopgebruik wordt de `.exe` rechtstreeks op Windows gestart.
+## Android-APK maken
+
+Installeer Node.js 22 of hoger en Android Studio 2025.2.1 of hoger met een Android SDK voor API 24 of hoger. Android Studio installeert de bijbehorende JDK. Capacitor gebruikt de webbestanden in `www`. Voer in de projectmap uit:
+
+```powershell
+npm install
+npm run android:add
+npm run android:sync
+npm run android:open
+```
+
+Bouw daarna de APK in Android Studio via **Build > Build Bundle(s) / APK(s) > Build APK(s)**. Na aanpassingen aan de webapp voer je `npm run android:sync` opnieuw uit. De agenda-app zelf gebruikt geen internetverbinding; npm en Android Studio downloaden alleen de bouwgereedschappen en platformbestanden die voor het maken van de APK nodig zijn.
+
